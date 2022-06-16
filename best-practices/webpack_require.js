@@ -21,22 +21,20 @@ var WebpackTest = (function (modules) {
 			return installedModules[moduleName].exports
 		}
 
-		var module = (installedModules[moduleName] = {
-			exports: {},
-		})
-		modules[moduleName](module, module.exports, require)
+		var module = (installedModules[moduleName] = {})
+		modules[moduleName](module, require)
 
 		return module.exports
 	}
 })({
-	main: function (module, exports, require) {
+	main: function (module, require) {
 		var addModule = require("./add")
 		console.log(addModule.add(1, 1))
 
 		var squareModule = require("./square")
 		console.log(squareModule.square(3))
 	},
-	"./add": function (module, exports, require) {
+	"./add": function (module, require) {
 		console.log("加载了 add 模块")
 		module.exports = {
 			add: function (x, y) {
@@ -44,7 +42,7 @@ var WebpackTest = (function (modules) {
 			},
 		}
 	},
-	"./square": function (module, exports, require) {
+	"./square": function (module, require) {
 		console.log("加载了 square 模块")
 
 		var multiply = require("./multiply")
@@ -54,7 +52,7 @@ var WebpackTest = (function (modules) {
 			},
 		}
 	},
-	"./multiply": function (module, exports, require) {
+	"./multiply": function (module, require) {
 		console.log("加载了 multiply 模块")
 
 		module.exports = {
