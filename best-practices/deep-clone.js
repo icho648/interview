@@ -1,5 +1,6 @@
 class DeepClone {
 	constructor() {
+		// 也可以使用weakSet
 		this.cacheList = []
 	}
 	clone(source) {
@@ -8,15 +9,15 @@ class DeepClone {
 			if (cache) return cache
 			else {
 				let target
-				if (target instanceof Array) {
+				if (source instanceof Array) {
 					target = new Array()
-				} else if (target instanceof Function) {
+				} else if (source instanceof Function) {
 					target = function () {
 						return source.apply(this, arguments)
 					}
-				} else if (target instanceof Date) {
+				} else if (source instanceof Date) {
 					target = new Date(source)
-				} else if (target instanceof RegExp) {
+				} else if (source instanceof RegExp) {
 					target = new RegExp(source.source, source.flags)
 				} else {
 					target = new Object() // 不要忘记普通对象
