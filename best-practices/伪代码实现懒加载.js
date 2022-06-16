@@ -1,3 +1,10 @@
+/**
+ * @description 返回一个promise，在promise中创建script element，element text content为从url中导入模块，并将*赋给window.name
+ * script onload之后用window.name的值resolve，然后delete window.name，element.remove, error则reject
+ * 最后在dom中挂载这个script
+ * @param {*} url
+ * @returns
+ */
 function importModule(url) {
 	return new Promise((resolve, reject) => {
 		const script = document.createElement("script")
