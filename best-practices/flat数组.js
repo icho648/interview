@@ -5,11 +5,11 @@
  * @returns
  */
 function flatten(arr, result = []) {
-  for (let item of arr) {
-    if (Array.isArray(item)) flatten(item, result)
-    else result.push(item)
-  }
-  return result
+	for (let item of arr) {
+		if (Array.isArray(item)) flatten(item, result)
+		else result.push(item)
+	}
+	return result
 }
 
 /**
@@ -23,18 +23,18 @@ function flatten(arr, result = []) {
  * @param {*} arr
  */
 function* flat(arr) {
-  for (let item of arr) {
-    if (Array.isArray(item)) yield* flat(item)
-    else yield item
-  }
+	for (let item of arr) {
+		if (Array.isArray(item)) yield* flat(item)
+		else yield item
+	}
 }
 
 function flatten2(arr) {
-  let result = []
-  for (let val of flat(arr)) {
-    result.push(val)
-  }
-  return result
+	let result = []
+	for (let val of flat(arr)) {
+		result.push(val)
+	}
+	return result
 }
 
 /**
@@ -43,11 +43,11 @@ function flatten2(arr) {
  * @returns
  */
 function flatten3(arr) {
-  return arr.reduce((flat, toFlatten) => {
-    return flat.concat(
-      Array.isArray(toFlatten) ? flatten(toFlatten) : toFlatten
-    )
-  }, [])
+	return arr.reduce((flatted, toFlatten) => {
+		return flatted.concat(
+			Array.isArray(toFlatten) ? flatten3(toFlatten) : toFlatten
+		)
+	}, [])
 }
 
 /**
@@ -58,18 +58,18 @@ function flatten3(arr) {
  * @returns
  */
 function flatten4(input) {
-  const stack = [...input]
-  const res = []
-  while (stack.length) {
-    // 使用 pop 从 stack 中取出并移除值
-    const next = stack.pop()
-    if (Array.isArray(next)) {
-      // 使用 push 送回内层数组中的元素，不会改动原始输入
-      stack.push(...next)
-    } else {
-      res.push(next)
-    }
-  }
-  // 反转恢复原数组的顺序
-  return res.reverse()
+	const stack = [...input]
+	const res = []
+	while (stack.length) {
+		// 使用 pop 从 stack 中取出并移除值
+		const next = stack.pop()
+		if (Array.isArray(next)) {
+			// 使用 push 送回内层数组中的元素，不会改动原始输入
+			stack.push(...next)
+		} else {
+			res.push(next)
+		}
+	}
+	// 反转恢复原数组的顺序
+	return res.reverse()
 }
