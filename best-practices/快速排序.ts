@@ -1,3 +1,8 @@
+/**
+ * http://data.biancheng.net/view/117.html
+ * @param arr
+ * @returns
+ */
 function quickSort(arr: number[]) {
 	function recursion(left: number, right: number) {
 		if (left >= right) return
